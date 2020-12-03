@@ -1,4 +1,4 @@
-CREATE TABLE public.kpi_agg
+CREATE TABLE iconic.kpi_agg
 (
 	total_revenue INTEGER ENCODE az64,
 	female_percentage INTEGER ENCODE az64,
