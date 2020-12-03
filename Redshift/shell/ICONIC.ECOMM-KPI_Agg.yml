@@ -1,0 +1,53 @@
+###############Start of Job Export##############
+/opt/jenkins/.local/lib/python2.7/site-packages/pkg_resources/py2_warn.py:21: UserWarning: Setuptools will stop working on Python 2
+************************************************************
+You are running Setuptools on Python 2, which is no longer
+supported and
+>>> SETUPTOOLS WILL STOP WORKING <<<
+in a subsequent release (no sooner than 2020-04-20).
+Please ensure you are installing
+Setuptools using pip 9.x or later or pin to `setuptools<45`
+in your environment.
+If you have done those things and are still encountering
+this message, please follow up at
+https://bit.ly/setuptools-py2-warning.
+************************************************************
+  sys.version_info < (3,) and warnings.warn(pre + "*" * 60 + msg + "*" * 60)
+- job:
+    block-downstream: false
+    block-upstream: false
+    builders:
+    - shell: |-
+	    #ENV=dev
+        set +x
+        ################ Execute final aggregate queries ################
+        echo "Environment name is : ${ENV}"
+
+        sh /opt/git/repos/data-iconic/${ENV}/redshift/shell/kpi_agg.sh
+    concurrent: false
+    disabled: false
+    name: ICONIC.ECOMM-KPI_Agg
+    project-type: freestyle
+    properties:
+    - raw:
+        xml: |
+          <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.0.7" />
+    - raw:
+        xml: |
+          <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+          <useBuildBlocker>false</useBuildBlocker>
+          <blockLevel>GLOBAL</blockLevel>
+          <scanQueueFor>DISABLED</scanQueueFor>
+          <blockingJobs />
+          </hudson.plugins.buildblocker.BuildBlockerProperty>
+    - raw:
+        xml: |
+          <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
+          <autoRebuild>false</autoRebuild>
+          <rebuildDisabled>false</rebuildDisabled>
+          </com.sonyericsson.rebuild.RebuildSettings>
+    publishers: []
+    triggers: []
+    wrappers: []
+
+###############End of Job Export##############
