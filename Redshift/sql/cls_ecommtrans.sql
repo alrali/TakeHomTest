@@ -1,4 +1,4 @@
-CREATE TABLE public.cls_ecommtrans
+CREATE TABLE iconic.cls_ecommtrans
 (
 	customer_id VARCHAR(256) ENCODE lzo,
 	days_since_first_order INTEGER ENCODE az64,
