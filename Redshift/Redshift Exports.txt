@@ -1,0 +1,1 @@
+"s3-data-dev-iconic-exports": "export AWS_ACCESS_KEY_ID=AKIAJQYXSASUV2TKBDGA export AWS_SECRET_ACCESS_KEY=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",
